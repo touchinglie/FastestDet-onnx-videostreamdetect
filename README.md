@@ -1,5 +1,4 @@
-# FastestStreamDet
-# 最速流推理
+# FastestStreamDet最速流推理
 
 ***A inference implementation that supports multiple input streams in a single file based on FastestDet.***
 
@@ -10,8 +9,7 @@
 <img alt="video_demo" src="Streamresult.png" align="right">
 
 
-# Advance
-# 强处
+# Advance强处
 
 * Use the ONNX model to infer real-time camera streams, images, and video file streams.
 * 使用通用开源的onnx模型格式，能推理摄像头实时流、图片、视频文件流等多种类型的输入。
@@ -26,7 +24,7 @@
 # How to use咋用
 
 ## Install the required dependencies firstly
-## 先把下面这些库装好,python不是3.8会有奇妙的bug
+## 先把下面这些库装好,python不是3.8版本的话会有奇妙的bug
 * Python(3.8 for recommended version) and pip
 * opencv-python
 * numpy==1.23.0
@@ -65,8 +63,7 @@
 * 按“q”键终止推理进程
   
 
-## CameraStream
-## 摄像头实时流
+## CameraStream摄像头实时流
 * Choose your own camera index then type in terminal:
 * 选好摄像头的编号复制到终端回车：
   
@@ -87,8 +84,7 @@
 * 按“q”键终止推理进程
 
 
-## Picture
-## 图片
+## Picture图片
 * Type in the terminal:
 * 复制到终端回车：
   
@@ -100,8 +96,7 @@
 * 看看 resultsave 文件夹里保存的推理结果
 
 
-## VideoStream
-## 视频文件流
+## VideoStream视频文件流
 * Type in the terminal:
 * 复制到终端回车：
   
