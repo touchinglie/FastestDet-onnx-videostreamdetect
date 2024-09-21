@@ -18,6 +18,9 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
+    - name: upgrade pip to avoid the AttributeError
+      run: |
+          python.exe -m pip install --upgrade pip
     - name: Install dependencies
       run: |
         pip install opencv-python numpy==1.23.0 onnx_simplifier==0.3.10 onnxruntime==1.16.0 pathlib argparse
