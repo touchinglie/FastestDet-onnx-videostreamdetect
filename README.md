@@ -2,7 +2,9 @@
 # 最速流推理
 
 ***A inference implementation that supports multiple input streams in a single file based on FastestDet.***
+
 ***一个基于FastestDet的单文件多类型输入推理实现***
+
 ~~开箱即用兄dei~~
 
 <img alt="video_demo" src="Streamresult.png" align="right">
@@ -21,8 +23,7 @@
 * 踩了无数的坑,包没问题的,有错你~~踹~~Issue我
 
 
-# How to use
-# 咋用
+# How to use咋用
 
 ## Install the required dependencies firstly
 ## 先把下面这些库装好,python不是3.8会有奇妙的bug
@@ -34,8 +35,7 @@
 * pathlib
 * argparse
 
-## Demo
-## 示例
+## Demo示例
 * Type in the terminal:
 * 复制到终端回车：
 
@@ -115,8 +115,7 @@
 * Click "q" to end the detect process.
 * 按“q”键终止推理进程
 
-# Todo
-# 待完成
+# Todo待完成
 
 * Save the VideoStream detection result as a file
 * 以文件形式保存视频流推理结果
@@ -127,8 +126,7 @@
 * Use ncnn Framework(almost done)
 * 使用ncnn来编译推理(接近完成,孩子原先的ncnn已经编译成功啦)
 
-# Reference
-# 引用
+# Reference引用
 
 * [FastestDet](https://github.com/dog-qiuqiu/FastestDet)
 * [onnx](https://github.com/onnx/onnx)
