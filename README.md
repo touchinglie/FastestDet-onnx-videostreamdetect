@@ -1,6 +1,6 @@
 # FastestStreamDet
 
-***A FastestDet inference implementation that supports multiple input streams in a single file.***
+***A inference implementation that supports multiple input streams in a single file based on FastestDet.***
 
 <img alt="video_demo" src="Streamresult.png" align="right">
 
@@ -39,6 +39,9 @@
   python detect.py --source video --videofile datatest/21115-315137069_small.mp4
   python detect.py --source video --videofile datatest/2174-155747455_small.mp4
   ```
+
+* The First example video owned by [Jahhoo](https://pixabay.com/users/jahhoo-1418773/)
+* The Second example video owned by [RafterJr72](https://pixabay.com/users/rafterjr72-11468402/)
 
 * Check the detect result through the new window created by opencv
 
@@ -88,3 +91,10 @@
 * Write an UI to adapt most usage
 * Multi CPU core Inferences
 * Use ncnn Framework(almost done)
+
+# Reference
+
+* [FastestDet](https://github.com/dog-qiuqiu/FastestDet)
+* [onnx](https://github.com/onnx/onnx)
+* [Jahhoo](https://pixabay.com/users/jahhoo-1418773/)
+* [RafterJr72](https://pixabay.com/users/rafterjr72-11468402/)
