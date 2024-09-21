@@ -54,16 +54,16 @@
   python detect.py --source video --videofile datatest/2174-155747455_small.mp4
   ```
 
-* 以上示例视频由这两位作者分别所拥有
 * The First example video owned by [Jahhoo](https://pixabay.com/users/jahhoo-1418773/)
 * The Second example video owned by [RafterJr72](https://pixabay.com/users/rafterjr72-11468402/)
+* 以上示例视频由这两位作者分别所拥有
 
 * Check the detect result through the new window created by opencv
 * 通过opencv打开的视频流窗口查看推理结果
 
 * Click "q" to end the detect process.
 * 按“q”键终止推理进程
-* 
+  
 
 ## CameraStream
 ## 摄像头实时流
