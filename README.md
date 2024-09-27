@@ -22,9 +22,13 @@
 
 
 # How to use咋用
+## Tips: Never use ctrl+c to force an working program stopping. You may found the camera still being used.
+## 别手贱直接CTRL+C给正常工作的推理进程干掉了，不然用摄像头的时候有你好果子吃的（摄像头：这给我干哪了，这还是地球吗？）
 
 ## Install the required dependencies firstly
 ## 先把下面这些库装好,python不是3.8版本的话会有奇妙的bug
+## The dependency onnxruntime might be hard to installed on Linux platforms.
+## Linux装onnxruntime是真的坐牢，慎用
 * Python(3.8 for recommended version) and pip
 * opencv-python
 * numpy==1.23.0

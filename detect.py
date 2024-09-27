@@ -122,7 +122,7 @@ def detection(session, img, input_width, input_height, thresh):
                 pred.append([x1, y1, x2, y2, score, cls_index])
     if len(pred) == 0:
         return [None]
-    return nms(np.array(pred))
+    return nms(np.array(pred), opt.nmsthresh)
 
 
 def run(img):
@@ -133,14 +133,11 @@ def run(img):
     # 目标检测
     start = time.perf_counter()
     # 输入并推理
-    bboxes = detection(session, img, input_width, input_height, 0.45)
+    bboxes = detection(session, img, input_width, input_height, opt.detectthresh)
     if bboxes == [None]:
-        img = cv2.cvtColor(
-            img, cv2.COLOR_RGB2BGR
-        )  # ESP32采集的是RGB格式，要转换为BGR（opencv的格式）
-        sucbool, res = cv2.imencode(".jpg", img)
-        resimg = res.tobytes()
-        return ([], resimg)
+        if type(opt.source) == int or opt.source == "video":
+            resframe = img
+        return img
     end = time.perf_counter()
     usedtime = (end - start) * 1000.0
     print("forward time:%fms" % usedtime)
@@ -220,6 +217,12 @@ if __name__ == "__main__":
     parser.add_argument(
         "--videofile", type=str, default="", help="Required only for 'video' source"
     )
+    parser.add_argument(
+        "--nmsthresh", type=int, default=0.25, help="Inference Detect threshold"
+    )
+    parser.add_argument(
+        "--detectthresh", type=int, default=0.7, help="Inference Detect threshold"
+    )
 
     # 保证命令在文件根目录执行，文件名定位正确
     FILE = Path(__file__).resolve()
@@ -253,13 +256,12 @@ if __name__ == "__main__":
     if type(opt.source) != int:
         if opt.source == "video":
             # 视频文件流源
-            assert os.path.exists(opt.videofile)
+            assert os.path.exists(opt.videofile), "视频文件不存在"
             cap = cv2.VideoCapture(opt.videofile)  # 用opencv打开视频文件，转换为视频流
             print("Opened VideoStream.")
             while cap.isOpened():
                 # 按下q键退出推理
                 if cv2.waitKey(1) & 0xFF == ord("q"):
-                    cap.release()
                     break
                 ret, img = cap.read()  # 获取视频的开启状态和每一帧图片
                 if ret:
@@ -270,7 +272,7 @@ if __name__ == "__main__":
             cap.release()
         else:
             # 图片源
-            assert os.path.exists(opt.source)
+            assert os.path.exists(opt.source), "图片文件不存在"
             img = cv2.imread(opt.source)
             respic = run(img)
             cv2.imwrite("resultsave/result.jpg", respic)
@@ -281,7 +283,6 @@ if __name__ == "__main__":
         while True:
             # 按下q键退出推理
             if cv2.waitKey(1) & 0xFF == ord("q"):
-                cap.release()
                 break
             ret, img = cap.read()  # 获取视频的开启状态和每一帧图片
             if ret:
@@ -290,4 +291,7 @@ if __name__ == "__main__":
             else:
                 cv2.waitKey(1)  # 防止推理速度不够快，有空白帧
 
+    if "cap" in globals():
+        if cap.isOpened:
+            cap.release()
     cv2.destroyAllWindows()
