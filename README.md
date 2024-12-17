@@ -28,7 +28,7 @@
 
 ## Install the required dependencies firstly
 ## 先把下面这些库装好,python不是3.8版本的话会有奇妙的bug
-**The dependency onnxruntime might be hard to installed on Linux platforms.**
+**The dependency onnxruntime might be hard to be installed on Linux platforms.**
 
 **Linux装onnxruntime是真的坐牢，慎用**
 * Python(3.8 for recommended version) and pip
