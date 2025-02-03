@@ -265,7 +265,8 @@ if __name__ == "__main__":
             if len(folderChecker) == 0:
                 savePath = f"resultsave/video/0.mp4"
             else:
-                savePath = f"resultsave/video/{int(sorted(folderChecker, reverse=True)[0].split(".")[0])+1}.mp4"
+                videoNum = int(sorted(folderChecker)[-1].split(".")[0]) + 1
+                savePath = f"resultsave/video/{videoNum}.mp4"
             # 帧率调整
             fps = 25.0
             # 创建结果视频写入器以保存文件
@@ -304,7 +305,8 @@ if __name__ == "__main__":
         if len(folderChecker) == 0:
             savePath = f"resultsave/video/0.mp4"
         else:
-            savePath = f"resultsave/video/{int(sorted(folderChecker, reverse=True)[0].split(".")[0])+1}.mp4"
+            videoNum = int(sorted(folderChecker)[-1].split(".")[0]) + 1
+            savePath = f"resultsave/video/{videoNum}.mp4"
         # 帧率调整
         fps = 25.0
         # 创建结果视频写入器以保存文件
