@@ -259,13 +259,31 @@ if __name__ == "__main__":
             assert os.path.exists(opt.videofile), "视频文件不存在"
             cap = cv2.VideoCapture(opt.videofile)  # 用opencv打开视频文件，转换为视频流
             print("Opened VideoStream.")
+            print(f"Video width:{int(cap.get(3))} Video height:{int(cap.get(4))}")
+            # 查看结果文件夹最后的视频序号并生成此次结果视频文件
+            folderChecker = os.listdir("resultsave/video/")
+            if len(folderChecker) == 0:
+                savePath = f"resultsave/video/0.mp4"
+            else:
+                savePath = f"resultsave/video/{int(sorted(folderChecker, reverse=True)[0].split(".")[0])+1}.mp4"
+            # 帧率调整
+            fps = 25.0
+            # 创建结果视频写入器以保存文件
+            vw = cv2.VideoWriter(
+                savePath,
+                cv2.VideoWriter.fourcc(*"mp4v"),
+                fps,
+                (int(cap.get(3)), int(cap.get(4))),
+            )
             while cap.isOpened():
                 # 按下q键退出推理
                 if cv2.waitKey(1) & 0xFF == ord("q"):
+                    vw.release()
                     break
                 ret, img = cap.read()  # 获取视频的开启状态和每一帧图片
                 if ret:
                     run(img)
+                    vw.write(resframe)
                     cv2.imshow("Videostream", resframe)
                 else:
                     cv2.waitKey(1)  # 防止推理速度不够快，有空白帧
@@ -280,13 +298,31 @@ if __name__ == "__main__":
         # 摄像头实时流源
         cap = cv2.VideoCapture(opt.source)  # 用opencv打开摄像头，0为默认摄像头
         print("Opened Camera.")
+        print(f"Video width:{int(cap.get(3))} Video height:{int(cap.get(4))}")
+        # 查看结果文件夹最后的视频序号并生成此次结果视频文件
+        folderChecker = os.listdir("resultsave/video/")
+        if len(folderChecker) == 0:
+            savePath = f"resultsave/video/0.mp4"
+        else:
+            savePath = f"resultsave/video/{int(sorted(folderChecker, reverse=True)[0].split(".")[0])+1}.mp4"
+        # 帧率调整
+        fps = 25.0
+        # 创建结果视频写入器以保存文件
+        vw = cv2.VideoWriter(
+            savePath,
+            cv2.VideoWriter.fourcc(*"mp4v"),
+            fps,
+            (int(cap.get(3)), int(cap.get(4))),
+        )
         while True:
             # 按下q键退出推理
             if cv2.waitKey(1) & 0xFF == ord("q"):
+                vw.release()
                 break
             ret, img = cap.read()  # 获取视频的开启状态和每一帧图片
             if ret:
                 run(img)
+                vw.write(resframe)
                 cv2.imshow("CameraStream", resframe)
             else:
                 cv2.waitKey(1)  # 防止推理速度不够快，有空白帧
@@ -294,4 +330,6 @@ if __name__ == "__main__":
     if "cap" in globals():
         if cap.isOpened:
             cap.release()
+    if "vw" in globals():
+        vw.release()
     cv2.destroyAllWindows()

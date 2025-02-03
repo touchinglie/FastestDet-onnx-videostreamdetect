@@ -30,7 +30,9 @@
 ## 先把下面这些库装好,python不是3.8版本的话会有奇妙的bug
 **The dependency onnxruntime might be hard to be installed on Linux platforms.**
 
-**Linux装onnxruntime是真的坐牢，慎用**
+**Please install onnxruntime in conda virtual env.**
+
+**Linux装onnxruntime是真的坐牢，慎用，或者转用conda环境装**
 * Python(3.8 for recommended version) and pip
 * opencv-python
 * numpy==1.23.0
@@ -86,6 +88,9 @@
 * Check the detect result through the new window created by opencv
 * 通过opencv打开的视频流窗口查看推理结果
 
+* The detect result will be saved in resultsave/video folder.
+* 推理结果会被保留在resultsave/video目录下
+
 * Click "q" to end the detect process.
 * 按“q”键终止推理进程
 
@@ -113,13 +118,16 @@
 * Check the detect result through the new window created by opencv
 * 通过opencv打开的视频流窗口查看推理结果
 
+* The detect result will be saved in resultsave/video folder.
+* 推理结果会被保留在resultsave/video目录下
+
 * Click "q" to end the detect process.
 * 按“q”键终止推理进程
 
 # Todo待完成
 
-* Save the VideoStream detection result as a file
-* 以文件形式保存视频流推理结果
+* Save the VideoStream detection result as a file ✔ (done!)
+* 以文件形式保存视频流推理结果 ✔（已完成！）
 * Write an UI to adapt most usage
 * 写一个能适用于大多数场景需求的UI
 * Multi CPU core Inferences
