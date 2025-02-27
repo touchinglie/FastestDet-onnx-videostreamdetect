@@ -11,8 +11,8 @@
 
 # Advance强处
 
-* Use the ONNX model to infer real-time camera streams, images, and video file streams.
-* 使用通用开源的onnx模型格式，能推理摄像头实时流、图片、视频文件流等多种类型的输入。
+* Use the ONNX/NCNN model to infer real-time camera streams, images, and video file streams.
+* 使用通用开源的onnx、ncnn模型格式，能推理摄像头实时流、图片、视频文件流等多种类型的输入。
 * Simply output inference results in a variety of ways.
 * 输出可随心所欲地以不同方式（保存、字节码导出返回……）处理，~~文件里都给你提前写好想要什么输出方式了~~
 * Single file.
@@ -20,11 +20,12 @@
 * Debugged problem carefully, fixing most bugs.
 * 踩了无数的坑,包没问题的,有错你~~踹~~Issue我
 
+# Use under ONNX 在ONNX下使用
 
-# How to use咋用
+## How to use咋用
 **Tips: Never use ctrl+c to force an working program stopping. You may found the camera still being used.**
 
-**别手贱直接CTRL+C给正常工作的推理进程干掉了，不然用摄像头的时候有你好果子吃的（摄像头：这给我干哪了，这还是地球吗？）**
+**别手贱直接CTRL+C给正常工作的推理进程干掉了，不然再用摄像头的时候有你好果子吃的（摄像头：这给我干哪了，这还是地球吗？）**
 
 ## Install the required dependencies firstly
 ## 先把下面这些库装好,python不是3.8版本的话会有奇妙的bug
@@ -124,6 +125,70 @@
 * Click "q" to end the detect process.
 * 按“q”键终止推理进程
 
+
+
+# Use under NCNN 在NCNN下使用
+
+## How to use咋用
+**Tips: Never use ctrl+c to force an working program stopping. You may found the camera still being used.**
+
+**别手贱直接CTRL+C给正常工作的推理进程干掉了，不然再用摄像头的时候有你好果子吃的**
+
+## Install the required dependencies firstly
+## 先把下面这些库装好
+
+* gcc & g++(12.2.0 for recommended version)
+* opencv 4.10 (with c++ support package)
+* libxext-dev
+* libgl1-mesa-dev
+* Linux Benchmark (GRAPHIC_TESTS needed)
+* ncnn
+
+## Compile to build executable file
+## 编译可执行文件
+
+* Type in the terminal:
+* 复制到终端回车：
+
+  ```
+  cd ncnn
+  source ./build.sh
+  ```
+
+* The compile will create a executable file named "FastestStreamDet".
+* 正常会生成名为“FastestStreamDet”的无后缀可执行文件
+ 
+
+## Usage Demo用法示例
+
+* Type in the terminal:
+* 复制到终端回车：
+
+  ```
+  ./FastestStreamDet pic /{path/to/pic}/{picname}.jpg
+  ```
+
+* Check your result image in the output folder.
+* 看看 output 文件夹里保存的推理图片结果
+
+* Type in the terminal:
+* 复制到终端回车：
+  
+  ```
+  ./FastestStreamDet video {video path or stream link}
+  ```
+
+* Check the detect result through the new window created by opencv
+* 通过opencv打开的视频流窗口查看推理结果
+
+* Click "q" to end the detect process.
+* 按“q”键终止推理进程
+
+* Check your result video in the output folder.
+* 看看 output 文件夹里保存的推理视频结果
+
+<img alt="video_demo" src="ncnnStreamresult.png" align="right">
+
 # Todo待完成
 
 * Save the VideoStream detection result as a file ✔ (done!)
@@ -132,12 +197,13 @@
 * 写一个能适用于大多数场景需求的UI
 * Multi CPU core Inferences
 * 多核推理
-* Use ncnn Framework(almost done)
-* 使用ncnn来编译推理(接近完成,孩子原先的ncnn已经编译成功啦)
+* Use ncnn Framework ✔ (done!)
+* 使用ncnn来编译推理 ✔（已完成！）
 
 # Reference引用
 
 * [FastestDet](https://github.com/dog-qiuqiu/FastestDet)
 * [onnx](https://github.com/onnx/onnx)
+* [ncnn](https://github.com/Tencent/ncnn/)
 * [Jahhoo](https://pixabay.com/users/jahhoo-1418773/)
 * [RafterJr72](https://pixabay.com/users/rafterjr72-11468402/)

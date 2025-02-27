@@ -73,7 +73,7 @@ def nms(dets, thresh=0.3):
     return output
 
 
-# 车牌检测
+# 检测
 def detection(session, img, input_width, input_height, thresh):
     pred = []
 
@@ -178,7 +178,7 @@ def run(img):
     fps = 20
     w,h=(352,352)
     vid_writer[i] = cv2.VideoWriter(save_path, fourcc, fps, (w, h))
-    while (capture.isOpened()): # 笔记本内置摄像头被打开后
+    while (capture.isOpened()): # 设备摄像头被打开后
         retval, frame = capture.read() # 从摄像头中实时读取视频
         if retval = True: # 读取到摄像头视频后
             outputrite(frame) # 在VideoWriter类对象中写入读取到的帧
@@ -186,7 +186,7 @@ def run(img):
         key = cv2.waitKey(1) # 窗口的图像刷新时间为1毫秒
         if key == 27: # 如果按下Esc键
             break
-    capture.release() # 关闭笔记本内置摄像头
+    capture.release() # 关闭设备摄像头
     output.release() 释放VideoWriter类对象
     """
 
